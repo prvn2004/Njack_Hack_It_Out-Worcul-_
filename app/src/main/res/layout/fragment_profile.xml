@@ -27,15 +27,15 @@
             android:gravity="center_vertical"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:logo="@drawable/logo_top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
+            app:logo="@drawable/logo_top"
             app:menu="@menu/toolbar_menu"
             app:title="Profile"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@color/white" />
 
 
         <ImageView
@@ -57,10 +57,10 @@
         android:id="@+id/imageView2"
         android:layout_width="87dp"
         android:layout_height="93dp"
-        android:src="@drawable/profile"
-        android:background="@drawable/profile_rounded"
         android:layout_marginLeft="10dp"
+        android:background="@drawable/profile_rounded"
         android:scaleType="fitXY"
+        android:src="@drawable/profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
@@ -129,7 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -139,7 +139,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
