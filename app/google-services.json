@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "90892641844",
+    "firebase_url": "https://worcul-c7c7b-default-rtdb.firebaseio.com",
+    "project_id": "worcul-c7c7b",
+    "storage_bucket": "worcul-c7c7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90892641844:android:6c06a721d0174b2e15cc61",
+        "android_client_info": {
+          "package_name": "com.project.worcul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90892641844-jif1cos2s63dbl2t2ar8cifqjitjvgdq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.worcul",
+            "certificate_hash": "590e7581a841c8efecdf928c205b297c7ec2e97f"
+          }
+        },
+        {
+          "client_id": "90892641844-qcdh3sqr2emocrmvv417l5n7qsi9g5nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTFNCEhY_ptApyE3WaoSR31vmN8hxKXLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90892641844-qcdh3sqr2emocrmvv417l5n7qsi9g5nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

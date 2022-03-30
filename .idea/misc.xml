@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable-v24/edittext_rounded.xml" value="0.1" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/block_lines.xml" value="0.2445" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/googlelogin_rounded.xml" value="0.1085" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.244" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.1085" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/profile.xml" value="0.1985" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/profile_rounded.xml" value="0.185" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/top_rounded.xml" value="0.1085" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/drawable/top_rounded2.xml" value="0.1985" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/activity_main.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/activity_splashscreen.xml" value="0.152" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/activity_write.xml" value="0.4" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/content_splashscreen.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/fragment_github.xml" value="0.176" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/fragment_signup_fragement.xml" value="0.152" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/fragment_worcul.xml" value="0.2" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/gitrepo_list_item.xml" value="0.2" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/mymessage_list_item.xml" value="0.264" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/layout/worcul_list_item.xml" value="0.264" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/menu/bottom_menu.xml" value="0.176" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/menu/doctor_toolbar_menu.xml" value="0.234375" />
+        <entry key="..\:/Users/prave/Desktop/worcul/app/src/main/res/menu/toolbar_menu.xml" value="0.2328125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
