@@ -57,6 +57,7 @@ class GithubFragment : Fragment() {
                 getDetails()
                 getRepos()
                 Toast.makeText(activity, "just example toast", Toast.LENGTH_SHORT).show()
+
             }
         }
 
