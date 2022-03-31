@@ -54,8 +54,8 @@ class MyAdapter(
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-    override fun getItemCount(): Int { // this function is counting the size of list
-        return LinkList.size // returning the size of list
+    override fun getItemCount(): Int {
+        return LinkList.size
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
