@@ -7,7 +7,8 @@ import java.util.jar.Attributes
 data class worculDataFile(
     val nameOfUser: String? = "",
 //    val UserImage: Int,
-    val messageOfUser: String? =""
+    val messageOfUser: String? ="",
+    val imageUrl: String? =""
 
 ) {
 
@@ -22,6 +23,10 @@ data class worculDataFile(
 
     fun getText(): String? {
         return messageOfUser
+    }
+    fun getLink(): String?{
+        return imageUrl
+
     }
 
 

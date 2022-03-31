@@ -22,10 +22,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.project.worcul.databinding.ActivityWriteBinding
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -34,8 +36,11 @@ class WriteActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var LinkModel: ArrayList<FirebaseMessageDataFile>
     lateinit var ImageUri: Uri
+    lateinit var ImageUri2: Uri
     var JsonFile = "https://api.ocr.space/Parse/Image"
     private val PICK_FROM_GALLERY = 2
+
+//-----------------------------------------------------------------------------------------------------------------------------------
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +48,21 @@ class WriteActivity : AppCompatActivity() {
         setContentView(binding.root)
         database = Firebase.database.reference
 
+//=-----------------------------------------------------------------------------------------------------------------------------------
+
         binding.close.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }
+
+//--------------------------------------------------------------------------------------------------------------------------------------
+
         val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
             val personPhoto: Uri? = acct.photoUrl
             val personEmail = acct.email
-
             if (personEmail.isNullOrEmpty()) {
                 Toast.makeText(this, "no profile", Toast.LENGTH_SHORT).show()
             } else {
@@ -61,46 +70,111 @@ class WriteActivity : AppCompatActivity() {
                 Glide.with(this).load(personPhoto).centerCrop().into(imageView)
             }
         }
+        //--------------------------------------------------------------------------------------------------------------------------------------
 
         val profileName = intent.getStringExtra("link").toString().trim()
         val description = intent.getStringExtra("description").toString().trim()
 
         if (profileName.equals("null") && description.equals("null")) {
 
-        }else if(description.equals("null")){
+        } else if (description.equals("null")) {
             binding.text.setText("$profileName")
-        }
-        else {
+        } else {
             binding.text.setText("$profileName \n$description\n")
 
         }
+        //---------------------------------------------------------------------------------------------------------------------------------------
+
+        binding.ImageAttach.setOnClickListener {
+            MessageImageAttach()
+        }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
         binding.button.setOnClickListener {
             val messageOfUser = binding.text.text.toString()
-
-            
             val acct = GoogleSignIn.getLastSignedInAccount(this)
             val tsLong = System.currentTimeMillis() / 1000
             if (acct != null) {
-                val personName = acct.displayName
-                writeNewUser("$personName", uid, messageOfUser, tsLong )
-                finish()
+
+                val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+                val now = Date()
+                val fileName = formatter.format(now)
+                val storageReference =
+                    FirebaseStorage.getInstance().getReference("Images/$fileName")
+
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("Uploading image wait...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+                storageReference.putFile(ImageUri2).addOnSuccessListener {
+                    binding.MessageImage.setImageURI(ImageUri2)
+
+                    storageReference.downloadUrl.addOnSuccessListener (){
+                        val download: Uri = it
+                        val link = download.toString()
+                        Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
+                        val personName = acct.displayName
+                        writeNewUser("$personName", uid, messageOfUser, tsLong, "$link")
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        if (progressDialog.isShowing) progressDialog.dismiss()
+
+                    }
+                    Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
+                    if (progressDialog.isShowing) progressDialog.dismiss()
+
+                }
+
             } else {
-                writeNewUser("praveen", uid, messageOfUser, tsLong)
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-                finish()
+                val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+                val now = Date()
+                val fileName = formatter.format(now)
+                val storageReference =
+                    FirebaseStorage.getInstance().getReference("Images/$fileName")
+
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("uploading image wait...")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+                storageReference.putFile(ImageUri2).addOnSuccessListener {
+                    binding.MessageImage.setImageURI(ImageUri2)
+                    storageReference.downloadUrl.addOnSuccessListener (){
+                        val download: Uri = it
+                        val link = download.toString()
+                        writeNewUser("praveen", uid, messageOfUser, tsLong, "$link")
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        if (progressDialog.isShowing) progressDialog.dismiss()
+
+                    }
+                    Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
+
+                }.addOnFailureListener {
+                    Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
+
+                    if (progressDialog.isShowing) progressDialog.dismiss()
+
+                }
+
             }
         }
+
+//------------------------------------------------------------------------------------------------------------------------------------------
 
         binding.addImage.setOnClickListener {
             selectImage()
         }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------
         binding.GenerateLink.setOnClickListener(View.OnClickListener {
-//            uploadToFirebase()
             GenerateLink()
         })
+//-------------------------------------------------------------------------------------------------------------------------------------------
     }
+    //--------------------------------------------------------------------------------------------------------------------------------------------
 
     private fun GenerateLink() {
         val progressDialog = ProgressDialog(this)
@@ -155,6 +229,20 @@ class WriteActivity : AppCompatActivity() {
         rq.add(stringRequest)
     }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
+
+    private fun MessageImageAttach() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 0);
+        intent.putExtra("aspectY", 0);
+
+        startActivityForResult(intent, 200)
+    }
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+
     private fun selectImage() {
         val intent = Intent()
         intent.type = "image/*"
@@ -165,6 +253,8 @@ class WriteActivity : AppCompatActivity() {
 
         startActivityForResult(intent, 100)
     }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -238,7 +328,14 @@ class WriteActivity : AppCompatActivity() {
             rq.add(stringRequest)
 
         }
+
+        if (requestCode == 200 && resultCode == RESULT_OK) {
+            ImageUri2 = data?.data!!
+            binding.MessageImage.setImageURI(ImageUri2)
+        }
     }
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
     private fun encodeImage(bm: Bitmap): String {
         val progressDialog = ProgressDialog(this)
@@ -249,44 +346,52 @@ class WriteActivity : AppCompatActivity() {
         val baos = ByteArrayOutputStream()
         bm.compress(Bitmap.CompressFormat.JPEG, 30, baos)
         val b = baos.toByteArray()
-//        return Base64.encodeToString(b, Base64.DEFAULT)
         if (progressDialog.isShowing) progressDialog.dismiss()
         return android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT)
 
     }
 
+    //----------------------------------------------------------------------------------------------------------------------------------------
 
-    /*   private fun uploadToFirebase() {
+    /*    private fun uploadToFirebase() {
 
-           val progressDialog = ProgressDialog(this)
-           progressDialog.setMessage("uploading file....")
-           progressDialog.setCancelable(false)
-           progressDialog.show()
+             val progressDialog = ProgressDialog(this)
+             progressDialog.setMessage("uploading file....")
+             progressDialog.setCancelable(false)
+             progressDialog.show()
 
-           val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
-           val now = Date()
-           val fileName = formatter.format(now)
-           val storageReference = FirebaseStorage.getInstance().getReference("Images/$fileName")
-           val link = storageReference.getDownloadUrl().toString();
-           Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
-           Log.d("this", "$link")
+             val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+             val now = Date()
+             val fileName = formatter.format(now)
+             val storageReference = FirebaseStorage.getInstance().getReference("Images/$fileName")
+             val link = storageReference.getDownloadUrl().toString();
+             Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
+             Log.d("this", "$link")
 
-           storageReference.putFile(ImageUri).addOnSuccessListener {
-               binding.Image.setImageURI(null)
-               Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
+             storageReference.putFile(ImageUri2).addOnSuccessListener {
+                 binding.MessageImage.setImageURI(ImageUri2)
+                 Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
 
-               if (progressDialog.isShowing) progressDialog.dismiss()
+                 if (progressDialog.isShowing) progressDialog.dismiss()
 
-           }.addOnFailureListener {
-               if (progressDialog.isShowing) progressDialog.dismiss()
-               Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
+             }.addOnFailureListener {
+                 if (progressDialog.isShowing) progressDialog.dismiss()
+                 Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
 
-           }
-       } */
+             }
+         } */
 
-    private fun writeNewUser(nameOfUser: String, UID: String, messageOfUser: String, Timestamp: Long) {
+    //-----------------------------------------------------------------------------------------------------------------------------------------
 
-        val Message1 = FirebaseMessageDataFile(nameOfUser, messageOfUser, Timestamp)
+    private fun writeNewUser(
+        nameOfUser: String,
+        UID: String,
+        messageOfUser: String,
+        Timestamp: Long,
+        ImageUrl: String
+    ) {
+
+        val Message1 = FirebaseMessageDataFile(nameOfUser, messageOfUser, Timestamp, ImageUrl)
         val uniqueId = UUID.randomUUID().toString();
 
         database.child("Users").child("messages").child(UID).child("$UID$nameOfUser$uniqueId")
@@ -294,4 +399,7 @@ class WriteActivity : AppCompatActivity() {
         database.child("messages").child("$UID$nameOfUser$uniqueId").setValue(Message1)
 
     }
+
+//----------------------------------------------------------------------------------------------------------------------------------------------
+
 }

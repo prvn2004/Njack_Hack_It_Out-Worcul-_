@@ -4,7 +4,7 @@ import android.net.Uri
 import java.sql.Timestamp
 import java.util.jar.Attributes
 
-data class FirebaseMessageDataFile(val nameOfUser: String, val messageOfUser: String, val Timestamp: Long) {
+data class FirebaseMessageDataFile(val nameOfUser: String, val messageOfUser: String, val Timestamp: Long, val ImageUrl: String) {
 
     fun getMessage(): String? {
         return messageOfUser

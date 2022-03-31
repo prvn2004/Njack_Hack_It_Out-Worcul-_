@@ -49,7 +49,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.937"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton2"
+                    app:layout_constraintStart_toEndOf="@+id/close"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -64,13 +64,17 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/block_lines"
+                    android:maxHeight="150dp"
+                    android:paddingBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -81,12 +85,12 @@
                     <ImageView
                         android:id="@+id/profile2"
                         android:layout_width="54dp"
-                        android:src="@drawable/profile"
                         android:layout_height="52dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
+                        android:src="@drawable/profile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.046"
@@ -95,50 +99,89 @@
                         app:layout_constraintVertical_bias="0.085" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout4"
                         android:layout_width="299dp"
-                        android:layout_height="160dp"
+                        android:background="@drawable/block_lines"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
+                        android:maxHeight="140dp"
+                        android:minHeight="120dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.578"
                         app:layout_constraintStart_toEndOf="@+id/profile2"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.363">
+                        app:layout_constraintVertical_bias="0.0">
 
                         <EditText
                             android:id="@+id/text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
+                            android:maxHeight="90dp"
                             android:hint="Share Something"
-                            android:textColorHint="@color/black"
                             android:textColor="@color/black"
+                            android:textColorHint="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/MessageImage"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:maxWidth="150dp"
+                            android:scaleType="fitCenter"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/text"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="@+id/text"
+                            app:layout_constraintTop_toBottomOf="@+id/text"
+                            app:layout_constraintVertical_bias="0.125" />
+
+                        <ImageButton
+                            android:id="@+id/ImageAttach"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/profile_rounded"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text"
+                            app:layout_constraintVertical_bias="1.0"
+                            app:srcCompat="@drawable/ic_baseline_attachment_24" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/block_lines">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout2"
                         android:layout_width="379dp"
-                        android:layout_height="137dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/block_lines"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="4dp"
+                        android:maxHeight="130dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -150,10 +193,11 @@
                             android:id="@+id/TextFromImage"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="write to generate text link"
                             android:background="@null"
+                            android:hint="write to generate text link"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black"
+                            android:textSize="12dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
