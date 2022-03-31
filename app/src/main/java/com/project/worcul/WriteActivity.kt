@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -34,11 +33,9 @@ import java.util.*
 class WriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWriteBinding
     private lateinit var database: DatabaseReference
-    private lateinit var LinkModel: ArrayList<FirebaseMessageDataFile>
     lateinit var ImageUri: Uri
     lateinit var ImageUri2: Uri
     var JsonFile = "https://api.ocr.space/Parse/Image"
-    private val PICK_FROM_GALLERY = 2
 
 //-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -78,7 +75,7 @@ class WriteActivity : AppCompatActivity() {
         if (profileName.equals("null") && description.equals("null")) {
 
         } else if (description.equals("null")) {
-            binding.text.setText("$profileName")
+            binding.text.setText(profileName)
         } else {
             binding.text.setText("$profileName \n$description\n")
 
@@ -114,7 +111,8 @@ class WriteActivity : AppCompatActivity() {
                         val link = download.toString()
                         Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
                         val personName = acct.displayName
-                        writeNewUser("$personName", uid, messageOfUser, tsLong, "$link")
+                       val trime =  Calendar.getInstance().time
+                        writeNewUser("$personName", uid, messageOfUser, tsLong, "$link", "$trime")
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -144,7 +142,8 @@ class WriteActivity : AppCompatActivity() {
                     storageReference.downloadUrl.addOnSuccessListener (){
                         val download: Uri = it
                         val link = download.toString()
-                        writeNewUser("praveen", uid, messageOfUser, tsLong, "$link")
+                        val trime = Calendar.getInstance().time
+                        writeNewUser("praveen", uid, messageOfUser, tsLong, "$link", "$trime")
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -388,10 +387,10 @@ class WriteActivity : AppCompatActivity() {
         UID: String,
         messageOfUser: String,
         Timestamp: Long,
-        ImageUrl: String
+        ImageUrl: String,
+        Time: String
     ) {
-
-        val Message1 = FirebaseMessageDataFile(nameOfUser, messageOfUser, Timestamp, ImageUrl)
+        val Message1 = FirebaseMessageDataFile(nameOfUser, messageOfUser, Timestamp, ImageUrl, Time)
         val uniqueId = UUID.randomUUID().toString();
 
         database.child("Users").child("messages").child(UID).child("$UID$nameOfUser$uniqueId")

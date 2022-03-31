@@ -73,6 +73,7 @@ class MyAdapter(
             binding.name.text = name
             binding.text.text = Link.getText().toString()
             binding.profile.setImageResource(R.drawable.profile)
+            binding.timeText.text = Link.getTime().toString()
         }
     }
 

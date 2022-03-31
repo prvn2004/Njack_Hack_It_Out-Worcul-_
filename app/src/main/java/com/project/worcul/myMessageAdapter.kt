@@ -3,6 +3,7 @@ package com.project.worcul;
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.project.worcul.databinding.MymessageListItemBinding
 import com.project.worcul.databinding.WorculListItemBinding
@@ -41,6 +42,9 @@ class myMessageAdapter(
     ) {
         val Link = LinkList[position]
         holder.friction(Link, position, LinkList)
+        Glide.with(holder.itemView.context).load(LinkList.get(position).getLink()).centerInside()
+            .into(binding.imageView7)
+
 
 //                setOnClickListener { listener(Link) }
     }
@@ -65,6 +69,7 @@ class myMessageAdapter(
             binding.name.text = Link.getName()
             binding.text.text = Link.getText()
             binding.profile.setImageResource(R.drawable.profile)
+            binding.timeText.text = Link.getTime().toString()
 
         }
 

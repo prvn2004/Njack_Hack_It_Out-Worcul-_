@@ -54,6 +54,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -101,18 +102,18 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
                         android:layout_width="299dp"
-                        android:background="@drawable/block_lines"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="4dp"
-                        android:paddingRight="4dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
+                        android:background="@drawable/block_lines"
                         android:maxHeight="140dp"
                         android:minHeight="120dp"
+                        android:paddingLeft="4dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="4dp"
+                        android:paddingBottom="4dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.578"
@@ -125,8 +126,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:maxHeight="90dp"
                             android:hint="Share Something"
+                            android:maxHeight="90dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -176,11 +177,11 @@
                         android:id="@+id/constraintLayout2"
                         android:layout_width="379dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/block_lines"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="4dp"
+                        android:background="@drawable/block_lines"
                         android:maxHeight="130dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

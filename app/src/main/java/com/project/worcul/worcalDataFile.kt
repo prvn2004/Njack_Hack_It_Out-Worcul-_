@@ -8,7 +8,8 @@ data class worculDataFile(
     val nameOfUser: String? = "",
 //    val UserImage: Int,
     val messageOfUser: String? ="",
-    val imageUrl: String? =""
+    val imageUrl: String? ="",
+    val trime: String? =""
 
 ) {
 
@@ -26,6 +27,10 @@ data class worculDataFile(
     }
     fun getLink(): String?{
         return imageUrl
+
+    }
+    fun getTime(): String? {
+        return trime
 
     }
 

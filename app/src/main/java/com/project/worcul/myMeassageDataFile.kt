@@ -3,7 +3,9 @@ package com.project.worcul;
 data class myMessageDataFile(
     val nameOfUser: String? = "",
 //    val UserImage: Int,
-    val messageOfUser: String? = ""
+    val messageOfUser: String? = "",
+    val imageUrl: String? = "",
+    val trime: String? = ""
 
 ) {
 
@@ -18,6 +20,15 @@ data class myMessageDataFile(
 
     fun getText(): String? {
         return messageOfUser
+    }
+
+    fun getLink(): String?{
+        return imageUrl
+
+    }
+    fun getTime(): String? {
+        return trime
+
     }
 
 

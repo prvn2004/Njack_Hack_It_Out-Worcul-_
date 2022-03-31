@@ -11,15 +11,16 @@
         android:id="@+id/LinearLayout_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
 
             <ImageView
                 android:id="@+id/profile"
@@ -49,7 +50,7 @@
                 android:lineSpacingExtra="2dp"
                 android:text="Praveen kumar"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="22dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,16 +60,15 @@
                 app:layout_constraintVertical_bias="0.071" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
                 android:layout_width="299dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="4dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.869"
-                app:layout_constraintStart_toEndOf="@+id/profile"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/name"
                 app:layout_constraintTop_toBottomOf="@+id/name"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -77,13 +77,55 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="2dp"
-                    android:text="Sanghita,is it necesssary to specify the dimensions here.Bcoz i am targetting multiple device sizes i dont want to set the dimensions as u mentioned since it takes up fixed size.Can the image be set as per the size of the imageview defined in the xml file?Also i changed to this canvas.drawCircle(130, 130,130, paint); But i dont understand how to manipulate other parameters ;doing so does not render entire image Sanghita,is it necesssary to specify the dimensions here.Bcoz i am targetting multiple device sizes i dont want to set the dimensions as u mentioned since it takes up fixed size.Can the image be set as per the size of the imageview defined in the xml file?Also i changed to this canvas.drawCircle(130, 130,130, paint); But i dont understand how to manipulate other parameters ;doing so does not render entire image"
+                    android:textSize="16dp"
+                    android:text="hello fhjahdsjhfodsjfhadsjhfadsifhdsmfndsioohfu9adshfkadsjfndsjafhoidsahfadskmfndsjocopsdjkhjf0adsifjoadskjnfldsmfjiodsafjoiadsfh0ewjfksndalfmndsokce8wejc"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/image_border_line"
+                    android:foregroundGravity="top"
+                    android:maxHeight="400dp"
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.789"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/timeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Time"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="4dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/text"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:layout_constraintVertical_bias="1.0" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
