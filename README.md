@@ -11,10 +11,11 @@ the third page contains user's profile details and messages done by user. at top
 
 
 then lets go on our first page again, on first page there is messaging button which leads us to new page which is very much interesting .
-on that page i have used ocr(extract text from image). user can upload a image of code and the text will be extra
-cted from that using the api.
+on that page i have used ocr(extract text from image) api. user can upload a image of code and the text will be extracted from that using the api.
+
 that's not all after extracting code/text from image, u can directly upload that code and generate a link for that code and share with community, for link generation i 
-have used pastebin api, which is very interesting
+have used pastebin api, which is very interesting. 
+user can also send images to the community. this is done by using firebase storage and realtime database.
 
 
 and thats how you can share experiences and code with other programmers.
