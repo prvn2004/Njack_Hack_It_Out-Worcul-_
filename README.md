@@ -8,7 +8,10 @@ you can also login using google account directly(it makes easy to login and mana
 so the first page of app contains all the messages sent by peoples. messages are arranged in a way such that new messages will come on top.
 
 the second page is interesting. it uses github repo and github user api to search users with their username and get their details and repos. we will come on this point later, firstly let move on next point.
-the third page contains user's profile details and messages done by user. at top there is toolbar containing logout button. session management is done very precisely.!
+
+so the problems new programmers face is learning material or proper guidence. so to solve this problem there i have added a page of article. in that i have used an blog api. it gets top 25 blogs containing learning  resources and other roadmaps. senior can see and share directly the link of the blog.so it solves problem for new programmers.
+
+the sourth page contains user's profile details and messages done by user. at top there is toolbar containing logout button. session management is done very precisely.!
 
 
 then lets go on our first page again, on first page there is messaging button which leads us to new page which is very much interesting .
