@@ -7,8 +7,7 @@ you can also login using google account directly(it makes easy to login and mana
 
 so the first page of app contains all the messages sent by peoples. messages are arranged in a way such that new messages will come on top.
 
-the second page is interesting. it uses github repo and github user api to search users with their username and get their details and repos. we will come on this point !
-later firstly let move on next point.
+the second page is interesting. it uses github repo and github user api to search users with their username and get their details and repos. we will come on this point later, firstly let move on next point.
 the third page contains user's profile details and messages done by user. at top there is toolbar containing logout button. session management is done very precisely.!
 
 
@@ -17,9 +16,9 @@ on that page i have used ocr(extract text from image) api. user can upload a ima
 
 that's not all after extracting code/text from image, u can directly upload that code and generate a link for that code and share with community, for link generation i 
 have used pastebin api, which is very interesting. 
-user can also send images to the community. this is done by using firebase storage and realtime database.
-
+user can also send images and messages to the community. this is done by using firebase storage and realtime database.
 
 and thats how you can share experiences and code with other programmers.
 also you can share the github repos url(link) using github searching feature i mentioned before.
-try yourself to get interect with the community and try feature. 
+
+try the app yourself to interect with the community and experience all feature. 
