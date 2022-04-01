@@ -9,6 +9,12 @@
         android:id="@+id/Github"
         android:icon="@drawable/github"
         android:title="@null" />
+
+    <item
+        android:id="@+id/Articles"
+        android:icon="@drawable/ic_baseline_article_24"
+        android:title="@null" />
+
     <item
         android:id="@+id/profile"
         android:icon="@drawable/profile"

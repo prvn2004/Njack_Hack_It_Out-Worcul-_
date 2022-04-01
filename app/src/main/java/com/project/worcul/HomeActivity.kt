@@ -22,6 +22,8 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.Github -> setCurrentFragment(GithubFragment())
 
+                R.id.Articles -> setCurrentFragment(ArticleFragment())
+
             }
             true
         }
