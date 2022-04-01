@@ -1,6 +1,6 @@
 This is a community platform(android application) for programmers to  share their work expereience and projects among their juniors and other programmers to help them.
 
-firsly download the app(apk file) from here.(https://drive.google.com/file/d/18u6qkBMK7ccTYGJO3ernMFfHnKCSvc_L/view?usp=drivesdk)
+firstly download the app(apk file) from here.(https://drive.google.com/file/d/18u6qkBMK7ccTYGJO3ernMFfHnKCSvc_L/view?usp=drivesdk)
 
 then you need to signup using your email address and a confirmation email will be sent to your email after signup. after confirming it, you can login in the app.
 you can also login using google account directly(it makes easy to login and manage your account)
