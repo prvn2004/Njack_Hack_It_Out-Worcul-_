@@ -155,26 +155,12 @@ class loginFragment : Fragment() {
     private fun updateUI(user: FirebaseUser?) {
         if (auth.currentUser != null) {
             if (auth.currentUser!!.isEmailVerified) {
-                val email = binding.mailaddressPatient.text.toString()
-                    .trim()    //storing typed email text on a variable
-                val password = binding.passwordPatient.text.toString()
-                    .trim()    //storing typed password on a variable
                 val preferences = PreferenceManager.getDefaultSharedPreferences(activity)
                 val editor = preferences.edit()
+                val email = binding.mailaddressPatient.text.toString()
                 editor.putString("EmailLogin", "login")
-                editor.putString("EMAIL", email)
+                editor.putString("Email", email)
                 editor.apply()
-                val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                val database1 =
-                    Firebase.database.getReference().child("Users").child("UserName").child("$uid")
-                database1.get().addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val snapshot = it.result
-                        val email = snapshot.child("nameUser").getValue(String::class.java)
-                        Toast.makeText(activity, "user:$email", Toast.LENGTH_SHORT).show()
-                    } else {
-                    }
-                }
 
                 val intent = Intent(activity, HomeActivity::class.java)
                 startActivity(intent)

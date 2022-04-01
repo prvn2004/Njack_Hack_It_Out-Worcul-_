@@ -47,7 +47,7 @@ class GitRepoAdapter(
         binding.ShareButton.setOnClickListener {
             listener(Link)
             val i = Intent(it.context, WriteActivity::class.java)
-            i.putExtra("link", binding.Url.text.toString())
+            i.putExtra("link", LinkList.get(position).getUrl().toString())
             i.putExtra("description", binding.description.text.toString())
             it.context.startActivity(i)
         }

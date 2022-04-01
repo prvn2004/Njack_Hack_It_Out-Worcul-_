@@ -90,24 +90,20 @@ class profileFragment : Fragment() {
             val personEmail = acct.email
             val personId = acct.id
             val personPhoto: Uri? = acct.photoUrl
-
-
-            if (personEmail.isNullOrEmpty()) {
-                val preferences = PreferenceManager.getDefaultSharedPreferences(activity)
-                val email1 = preferences.getString("EMAIL", "email@gmail.com")
-                val url = personPhoto.toString()
-                binding.textView.text = email1.toString()
-            } else {
-                binding.textView.text = personName
+            binding.textView.text = personName
                 binding.email.text = personEmail
                 val imageView = binding.imageView2
                 binding.progressBar.visibility = View.VISIBLE
                 Glide.with(requireActivity()).load(personPhoto).centerCrop().into(imageView)
                 binding.progressBar.visibility = View.GONE
 
-            }
         } else {
-            Toast.makeText(activity, "code not worked", Toast.LENGTH_SHORT).show()
+            val preferences = PreferenceManager.getDefaultSharedPreferences(activity)
+            val email1 = preferences.getString("Email", "email@gmail.com")
+            val name = preferences.getString("Email", "Unknown User")
+            binding.textView.text = name.toString()
+            binding.email.text = email1.toString()
+
         }
 
 

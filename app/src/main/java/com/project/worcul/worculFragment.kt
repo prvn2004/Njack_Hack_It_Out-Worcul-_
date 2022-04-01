@@ -44,24 +44,6 @@ class worculFragment : Fragment() {
         }
 
         getMessages()
-//        val itemList = ArrayList<worculDataFile>()
-//        val datafile = worculDataFile(
-//            "praveen kumar",
-//            R.drawable.profile,
-//            "https://stackoverflow.com/questions/14050813/how-to-make-an-image-fit-into-a-circular-frame-in-android"
-//        )
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//        itemList.add(datafile)
-//
-//        var adaptor = MyAdapter(itemList)
-//        binding.recyclerView.adapter = adaptor
         return view
     }
 
@@ -84,11 +66,11 @@ class worculFragment : Fragment() {
                     recyclerView.adapter = MyAdapter(LinkModel)
                     binding.progressBar.visibility = View.GONE
                 }
+                binding.progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
                 binding.progressBar.visibility = View.GONE
-
             }
 
 

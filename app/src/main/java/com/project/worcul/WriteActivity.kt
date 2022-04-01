@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -18,7 +19,10 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -88,8 +92,10 @@ class WriteActivity : AppCompatActivity() {
 
 //------------------------------------------------------------------------------------------------------------------------------------------
         binding.button.setOnClickListener {
+
             val messageOfUser = binding.text.text.toString()
             val acct = GoogleSignIn.getLastSignedInAccount(this)
+            val personName = acct?.displayName.toString()
             val tsLong = System.currentTimeMillis() / 1000
             if (acct != null) {
 
@@ -103,30 +109,55 @@ class WriteActivity : AppCompatActivity() {
                 progressDialog.setMessage("Uploading image wait...")
                 progressDialog.setCancelable(false)
                 progressDialog.show()
-                storageReference.putFile(ImageUri2).addOnSuccessListener {
-                    binding.MessageImage.setImageURI(ImageUri2)
+                if (binding.MessageImage.drawable != null) {
 
-                    storageReference.downloadUrl.addOnSuccessListener (){
-                        val download: Uri = it
-                        val link = download.toString()
-                        Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
-                        val personName = acct.displayName
-                       val trime =  Calendar.getInstance().time
-                        writeNewUser("$personName", uid, messageOfUser, tsLong, "$link", "$trime")
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                    storageReference.putFile(ImageUri2).addOnSuccessListener {
+                        binding.MessageImage.setImageURI(ImageUri2)
+                        storageReference.downloadUrl.addOnSuccessListener() {
+                            val download: Uri = it
+                            val link = download.toString()
+//                            Toast.makeText(this, "$link", Toast.LENGTH_SHORT).show()
+                            val trime = Calendar.getInstance().time
+
+                            writeNewUser(
+                                personName,
+                                uid,
+                                messageOfUser,
+                                tsLong,
+                                "$link",
+                                "$trime"
+                            )
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                            if (progressDialog.isShowing) progressDialog.dismiss()
+                        }
+                        Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
                         if (progressDialog.isShowing) progressDialog.dismiss()
 
                     }
-                    Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
-                    if (progressDialog.isShowing) progressDialog.dismiss()
+                } else {
+                    val trime = Calendar.getInstance().time
 
+                    writeNewUser(
+                        personName,
+                        uid,
+                        messageOfUser,
+                        tsLong,
+                        "",
+                        "$trime"
+                    )
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    if (progressDialog.isShowing) progressDialog.dismiss()
                 }
 
+
             } else {
+
                 val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
                 val now = Date()
                 val fileName = formatter.format(now)
@@ -137,28 +168,50 @@ class WriteActivity : AppCompatActivity() {
                 progressDialog.setMessage("uploading image wait...")
                 progressDialog.setCancelable(false)
                 progressDialog.show()
-                storageReference.putFile(ImageUri2).addOnSuccessListener {
-                    binding.MessageImage.setImageURI(ImageUri2)
-                    storageReference.downloadUrl.addOnSuccessListener (){
-                        val download: Uri = it
-                        val link = download.toString()
-                        val trime = Calendar.getInstance().time
-                        writeNewUser("praveen", uid, messageOfUser, tsLong, "$link", "$trime")
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                if (binding.MessageImage.drawable != null) {
+
+                    storageReference.putFile(ImageUri2).addOnSuccessListener {
+                        binding.MessageImage.setImageURI(ImageUri2)
+                        storageReference.downloadUrl.addOnSuccessListener() {
+                            val download: Uri = it
+                            val link = download.toString()
+                            val trime = Calendar.getInstance().time
+
+                            val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+                            val email = preferences.getString("Email", "Unknown User")
+                            writeNewUser("$email", uid, messageOfUser, tsLong, "$link", "$trime")
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                            if (progressDialog.isShowing) progressDialog.dismiss()
+
+
+                        }
+                        Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
+
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
+
                         if (progressDialog.isShowing) progressDialog.dismiss()
 
                     }
-                    Toast.makeText(this, "successfully uploaded", Toast.LENGTH_SHORT).show()
-
-                }.addOnFailureListener {
-                    Toast.makeText(this, "not uploaded", Toast.LENGTH_SHORT).show()
-
+                } else {
+                    val trime = Calendar.getInstance().time
+                    val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+                    val email = preferences.getString("Email", "Unknown user")
+                    writeNewUser(
+                        "$email",
+                        uid,
+                        messageOfUser,
+                        tsLong,
+                        "",
+                        "$trime"
+                    )
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     if (progressDialog.isShowing) progressDialog.dismiss()
-
                 }
-
             }
         }
 
@@ -173,7 +226,10 @@ class WriteActivity : AppCompatActivity() {
         })
 //-------------------------------------------------------------------------------------------------------------------------------------------
     }
+
+
     //--------------------------------------------------------------------------------------------------------------------------------------------
+
 
     private fun GenerateLink() {
         val progressDialog = ProgressDialog(this)
@@ -228,8 +284,7 @@ class WriteActivity : AppCompatActivity() {
         rq.add(stringRequest)
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
-
+    //-------------------------------------------------------------------------------------------------------------------------------------------
     private fun MessageImageAttach() {
         val intent = Intent()
         intent.type = "image/*"
@@ -240,6 +295,7 @@ class WriteActivity : AppCompatActivity() {
 
         startActivityForResult(intent, 200)
     }
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 
     private fun selectImage() {
@@ -333,6 +389,7 @@ class WriteActivity : AppCompatActivity() {
             binding.MessageImage.setImageURI(ImageUri2)
         }
     }
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
