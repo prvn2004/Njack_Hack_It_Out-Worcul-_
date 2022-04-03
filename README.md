@@ -24,4 +24,6 @@ user can also send images and messages to the community. this is done by using f
 and thats how you can share experiences and code with other programmers.
 also you can share the github repos url(link) using github searching feature i mentioned before.
 
+also there is an feature named article where any person can read article and bolgs regarding coding to learn more from people outside of platform and learn new things from other platforms.
+
 try the app yourself to interect with the community and experience all feature. 
